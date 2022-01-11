@@ -4,4 +4,8 @@ class Restaurant < ApplicationRecord
   validates :category, presence: true, inclusion: { in: %w[chinese italian japanese french belgian] }
 
   has_many :reviews, dependent: :destroy
+
+  def category_capitalized
+    category.capitalize
+  end
 end
