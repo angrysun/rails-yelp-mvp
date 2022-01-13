@@ -5,15 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts 'Deleting all restaurants...'
-Restaurant.destroy_all
+if Rails.env.development?
+  puts 'Deleting all restaurants...'
+  Restaurant.destroy_all
+end
 
 puts 'Creating 5 new restaurants...'
 5.times do
   Restaurant.create(
     name: Faker::Restaurant.name,
     address: Faker::Address.street_address,
-    category: %w[chinese italian japanese french belgian].sample
+    category: %w[chinese italian japanese french belgian].sample,
+    phone_number: Faker::PhoneNumber.cell_phone
   )
 end
 puts 'Done!'
